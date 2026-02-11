@@ -4,7 +4,6 @@ import { Button } from "antd";
 import Image from "next/image";
 import { personalInfo } from "@/app/data/personal";
 import {
-  AntDesignOutlined,
   GithubOutlined,
   LinkedinOutlined,
   MailOutlined,

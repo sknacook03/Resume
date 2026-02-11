@@ -9,10 +9,9 @@ export default function Footer() {
           <div className="text-xl font-bold text-zinc-900 dark:text-white">
             Gno
           </div>
-
           {/* Copyright */}
           <p className="text-zinc-500 dark:text-zinc-400 text-sm">
-            © {new Date().getFullYear()} All rights reserved.
+            © {new Date().getFullYear()} Phongwit | Portfolio. All rights reserved.
           </p>
         </div>
       </div>

@@ -19,10 +19,22 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    console.log("EmailJS config:", { serviceId, templateId, publicKey: publicKey ? "exists" : "missing" });
+
+    if (!serviceId || !templateId || !publicKey) {
+      message.error("EmailJS configuration is missing.");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        serviceId,
+        templateId,
         {
           from_name: formData.name,
           from_email: formData.email,
@@ -30,7 +42,7 @@ export default function Contact() {
           email: formData.email,
           message: formData.message,
         },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+        publicKey,
       );
 
       setFormData({ name: "", email: "", message: "" });

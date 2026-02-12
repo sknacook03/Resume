@@ -1,7 +1,6 @@
 "use client";
 
-import { Button } from "antd";
-import Image from "next/image";
+import { Button, Space, Image } from "antd";
 import { personalInfo } from "@/app/data/personal";
 import {
   GithubOutlined,
@@ -52,7 +51,7 @@ export default function Hero() {
           >
             <div className="flex flex-row gap-8 w-full">
               <motion.div
-                className="relative min-w-24 min-h-30 rounded-2xl overflow-hidden"
+                className="relative min-w-24 min-h-30 rounded-2xl overflow-hidden shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]"
                 whileHover={{ scale: 1.08, rotate: 2 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -60,8 +59,12 @@ export default function Hero() {
                   <Image
                     src={personalInfo.avatar}
                     alt={personalInfo.name}
-                    fill
-                    className="object-cover"
+                    width={"100%"}
+                    height={"100%"}
+                    preview={{
+                      mask: { blur: true },
+                    }}
+                    className="object-cover absolute w-full h-full"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-6xl bg-zinc-200 dark:bg-zinc-700">
@@ -95,7 +98,7 @@ export default function Hero() {
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                  > 
+                  >
                     <a href="/Resume_Phongwit.pdf" download>
                       <Button
                         type="default"
